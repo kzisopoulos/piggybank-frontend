@@ -6,7 +6,7 @@ import type { AxiosError } from "axios";
 export const useDeleteAccount = () => {
   const queryClient = useQueryClient();
 
-  const mutation = useMutation<void, AxiosError, DeleteAccountPayload>({
+  const mutation = useMutation<unknown, AxiosError, DeleteAccountPayload>({
     mutationKey: ["delete-account"],
     mutationFn: (body) => deleteAccount(body),
     onSuccess: () => {
