@@ -24,13 +24,13 @@ import { LoaderCircle, X } from "lucide-react";
 import { deleteAccountSchema, type DeleteAccountPayload } from "@/api/accounts";
 
 interface DeleteAccountFormProps {
-  accountId: string;
+  id: string;
   accountName: string;
   trigger?: React.ReactNode;
 }
 
 export default function DeleteAccountForm({
-  accountId,
+  id,
   accountName,
 }: DeleteAccountFormProps) {
   const [open, setOpen] = useState(false);
@@ -39,7 +39,7 @@ export default function DeleteAccountForm({
   const form = useForm<DeleteAccountPayload>({
     resolver: zodResolver(deleteAccountSchema),
     defaultValues: {
-      accountId,
+      id,
     },
   });
 
@@ -55,7 +55,13 @@ export default function DeleteAccountForm({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button size="icon" variant="ghost" className="size-6">
+        <Button
+          size="icon"
+          variant="ghost"
+          className="size-6"
+          tabIndex={0}
+          aria-label={`Delete ${accountName} account`}
+        >
           <X className="text-red-600" />
         </Button>
       </DialogTrigger>
@@ -74,7 +80,7 @@ export default function DeleteAccountForm({
           >
             <FormField
               control={form.control}
-              name="accountId"
+              name="id"
               render={({ field }) => (
                 <FormItem className="hidden">
                   <FormLabel>Account ID</FormLabel>

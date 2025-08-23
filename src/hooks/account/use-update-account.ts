@@ -7,7 +7,7 @@ export const useUpdateAccount = () => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation<unknown, AxiosError, UpdateAccountPayload>({
-    mutationKey: ["create-account"],
+    mutationKey: ["update-account"],
     mutationFn: (body) => updateAccount(body),
     onSuccess: () => {
       queryClient.refetchQueries({

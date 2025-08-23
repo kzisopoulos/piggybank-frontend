@@ -1,5 +1,4 @@
 import { AvatarFallback, Avatar } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardAction,
@@ -9,9 +8,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { useGetAccounts } from "@/hooks/account/use-get-accounts";
-import { Edit } from "lucide-react";
 import CreateAccountForm from "./forms/create-account-form";
 import DeleteAccountForm from "./forms/delete-account-form";
+import UpdateAccountForm from "./forms/update-account-form";
 
 export default function AccountsPage() {
   const { data } = useGetAccounts();
@@ -41,27 +40,8 @@ export default function AccountsPage() {
                 </div>
               </div>
               <CardAction className="hidden group-focus-within:flex group-hover:flex group-focus:flex items-center gap-1">
-                <Button
-                  size="icon"
-                  variant="ghost"
-                  className="size-6"
-                  tabIndex={0}
-                  aria-label={`Edit ${acc.name} account`}
-                >
-                  <Edit className="text-amber-600" />
-                </Button>
-                <Button
-                  size="icon"
-                  variant="ghost"
-                  className="size-6"
-                  tabIndex={0}
-                  aria-label={`Delete ${acc.name} account`}
-                >
-                  <DeleteAccountForm
-                    accountId={acc.id}
-                    accountName={acc.name}
-                  />
-                </Button>
+                <UpdateAccountForm account={acc} />
+                <DeleteAccountForm id={acc.id} accountName={acc.name} />
               </CardAction>
             </CardHeader>
             <CardContent>
