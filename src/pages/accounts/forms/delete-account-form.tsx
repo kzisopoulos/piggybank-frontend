@@ -21,10 +21,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { LoaderCircle, X } from "lucide-react";
-import {
-  deleteAccountSchema,
-  type DeleteAccountPayload,
-} from "@/api/accounts/delete-account.schema";
+import { deleteAccountSchema, type DeleteAccountPayload } from "@/api/accounts";
 
 interface DeleteAccountFormProps {
   accountId: string;

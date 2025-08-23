@@ -1,4 +1,4 @@
-import { createAccount } from "@/api/accounts/create-account.api";
+import { createAccount } from "@/api/accounts";
 import type {
   CreateAccountPayload,
   CreateAccountResponse,

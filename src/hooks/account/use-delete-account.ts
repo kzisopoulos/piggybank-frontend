@@ -1,4 +1,4 @@
-import { deleteAccount } from "@/api/accounts/delete-account.api";
+import { deleteAccount } from "@/api/accounts";
 import type { DeleteAccountPayload } from "@/api/accounts/delete-account.schema";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import type { AxiosError } from "axios";

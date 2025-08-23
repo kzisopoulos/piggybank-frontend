@@ -21,10 +21,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { LoaderCircle, Plus } from "lucide-react";
-import {
-  createAccountSchema,
-  type CreateAccountPayload,
-} from "@/api/accounts/create-account.schema";
+import { createAccountSchema, type CreateAccountPayload } from "@/api/accounts";
 
 export default function CreateAccountForm() {
   const [open, setOpen] = useState(false);
