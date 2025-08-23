@@ -4,6 +4,8 @@ interface Endpoints {
   register: string;
   session: string;
   logout: string;
+  // Account endpoints
+  accounts: string;
 }
 
 export const endpoints: Endpoints = {
@@ -11,4 +13,6 @@ export const endpoints: Endpoints = {
   register: "api/v1/auth/register",
   session: "/api/v1/auth/session",
   logout: "/api/v1/auth/logout",
+
+  accounts: "/api/v1/accounts",
 };

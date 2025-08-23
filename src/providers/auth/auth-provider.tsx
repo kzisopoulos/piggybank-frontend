@@ -1,5 +1,5 @@
 import { useGetSession } from "@/hooks/auth/use-get-session";
-import { QueryClient } from "@tanstack/react-query";
+import { QueryClient, useQueryClient } from "@tanstack/react-query";
 import {
   createContext,
   useEffect,
@@ -30,7 +30,7 @@ export const AuthContextProvider = ({ children }: PropsWithChildren) => {
   const [authenticated, setAuthenticated] = useState<boolean>(false);
   const [authIsReady, setAuthIsReady] = useState<boolean>(false);
 
-  const queryClient = new QueryClient();
+  const queryClient = useQueryClient();
 
   useEffect(() => {
     if (isSuccess && data) {
