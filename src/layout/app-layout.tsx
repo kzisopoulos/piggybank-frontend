@@ -8,7 +8,7 @@ export default function AppLayout() {
       <AppSidebar />
       <main className="h-full w-full flex flex-col">
         <SidebarTrigger />
-        <section className="flex-1 px-2 pt-3">
+        <section className="flex-1 px-2 py-3">
           <Outlet />
         </section>
       </main>

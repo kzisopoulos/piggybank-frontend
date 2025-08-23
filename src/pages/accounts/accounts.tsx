@@ -9,7 +9,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { useGetAccounts } from "@/hooks/account/use-get-accounts";
-import { Edit, Plus, X } from "lucide-react";
+import { Edit } from "lucide-react";
+import CreateAccountForm from "./forms/create-account-form";
+import DeleteAccountForm from "./forms/delete-account-form";
 
 export default function AccountsPage() {
   const { data } = useGetAccounts();
@@ -19,9 +21,7 @@ export default function AccountsPage() {
       {/* Accounts */}
       <div className="flex justify-between items-center">
         <h2 className="text-xl text-muted-foreground font-bold">Accounts:</h2>
-        <Button>
-          <Plus /> Create
-        </Button>
+        <CreateAccountForm />
       </div>
       <div className="grid gap-2 grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 ">
         {data?.data.map((acc) => (
@@ -40,18 +40,28 @@ export default function AccountsPage() {
                   <CardDescription>{acc.type}</CardDescription>
                 </div>
               </div>
-              <CardAction
-                tabIndex={0}
-                className="hidden group-hover:block group-focus:block"
-              >
-                <div tabIndex={0} className="flex items-center gap-1">
-                  <Button size="icon" variant="ghost" className="size-6">
-                    <Edit className="text-amber-600" />
-                  </Button>
-                  <Button size="icon" variant="ghost" className="size-6">
-                    <X className="text-red-600" />
-                  </Button>
-                </div>
+              <CardAction className="hidden group-focus-within:flex group-hover:flex group-focus:flex items-center gap-1">
+                <Button
+                  size="icon"
+                  variant="ghost"
+                  className="size-6"
+                  tabIndex={0}
+                  aria-label={`Edit ${acc.name} account`}
+                >
+                  <Edit className="text-amber-600" />
+                </Button>
+                <Button
+                  size="icon"
+                  variant="ghost"
+                  className="size-6"
+                  tabIndex={0}
+                  aria-label={`Delete ${acc.name} account`}
+                >
+                  <DeleteAccountForm
+                    accountId={acc.id}
+                    accountName={acc.name}
+                  />
+                </Button>
               </CardAction>
             </CardHeader>
             <CardContent>
@@ -68,22 +78,6 @@ export default function AccountsPage() {
           </Card>
         ))}
       </div>
-
-      {/* Net worth
-      <div>
-        <h2 className="text-xl text-muted-foreground font-bold">Networth:</h2>
-      </div>
-      <Card className="max-w-sm">
-        <CardHeader>
-          <CardDescription>Your current networth snapshot</CardDescription>
-          <CardTitle className="text-3xl">
-            {Intl.NumberFormat("el", {
-              style: "currency",
-              currency: "EUR",
-            }).format(networth() || 0)}
-          </CardTitle>
-        </CardHeader>
-      </Card> */}
     </section>
   );
 }
