@@ -31,7 +31,7 @@ interface UpdateAccountFormProps {
   account: Account;
 }
 
-export default function UpdateAccountForm({ account }: UpdateAccountFormProps) {
+export function UpdateAccountForm({ account }: UpdateAccountFormProps) {
   const [open, setOpen] = useState(false);
   const { mutate: onUpdateAccount, isPending } = useUpdateAccount();
 

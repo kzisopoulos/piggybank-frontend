@@ -29,10 +29,7 @@ interface DeleteAccountFormProps {
   trigger?: React.ReactNode;
 }
 
-export default function DeleteAccountForm({
-  id,
-  accountName,
-}: DeleteAccountFormProps) {
+export function DeleteAccountForm({ id, accountName }: DeleteAccountFormProps) {
   const [open, setOpen] = useState(false);
   const { mutate: onDeleteAccount, isPending } = useDeleteAccount();
 

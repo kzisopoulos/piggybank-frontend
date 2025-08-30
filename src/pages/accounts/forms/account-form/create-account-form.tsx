@@ -23,7 +23,7 @@ import {
 import { LoaderCircle, Plus } from "lucide-react";
 import { createAccountSchema, type CreateAccountPayload } from "@/api/accounts";
 
-export default function CreateAccountForm() {
+export function CreateAccountForm() {
   const [open, setOpen] = useState(false);
   const { mutate: onCreateAccount, isPending } = useCreateAccount();
 

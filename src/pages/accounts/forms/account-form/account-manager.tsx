@@ -1,0 +1,61 @@
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { CreateAccountForm } from "./create-account-form";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { UpdateAccountForm } from "./update-account-form";
+import { DeleteAccountForm } from "./delete-account-form";
+import { useGetAccounts } from "@/hooks/account/use-get-accounts";
+
+export function AccountManager() {
+  const { data } = useGetAccounts();
+  return (
+    <>
+      <div className="flex justify-between items-center">
+        <h2 className="text-xl text-muted-foreground font-bold">Accounts:</h2>
+        <CreateAccountForm />
+      </div>
+      <div className="grid gap-2 grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 ">
+        {data?.data.map((acc) => (
+          <Card
+            tabIndex={0}
+            key={acc.id}
+            className="w-full cursor-pointer group"
+          >
+            <CardHeader>
+              <div className="flex items-center gap-2">
+                <Avatar>
+                  <AvatarFallback>{acc.name.slice(0, 1)}</AvatarFallback>
+                </Avatar>
+                <div>
+                  <CardTitle>{acc.name}</CardTitle>
+                  <CardDescription>{acc.type}</CardDescription>
+                </div>
+              </div>
+              <CardAction className="hidden group-focus-within:flex group-hover:flex group-focus:flex items-center gap-1">
+                <UpdateAccountForm account={acc} />
+                <DeleteAccountForm id={acc.id} accountName={acc.name} />
+              </CardAction>
+            </CardHeader>
+            <CardContent>
+              <div className="flex items-center gap-1">
+                <div>Balance:</div>
+                <div className="text-green-600 font-bold  ">
+                  {Intl.NumberFormat("el", {
+                    style: "currency",
+                    currency: "EUR",
+                  }).format(acc.balance)}
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </>
+  );
+}
